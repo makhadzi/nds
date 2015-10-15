@@ -1,0 +1,6 @@
+Django>=1.8,<1.9
+wagtail
+psycopg2cffi
+markdown
+django-libsass
+dj-database-url
