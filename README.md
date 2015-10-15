@@ -1,0 +1,2 @@
+# nds
+News Diary Service
