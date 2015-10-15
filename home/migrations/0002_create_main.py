@@ -4,25 +4,25 @@ from __future__ import unicode_literals
 from django.db import migrations
 
 
-def create_homepage(apps, schema_editor):
+def create_main(apps, schema_editor):
     # Get models
     ContentType = apps.get_model('contenttypes.ContentType')
     Page = apps.get_model('wagtailcore.Page')
     Site = apps.get_model('wagtailcore.Site')
-    HomePage = apps.get_model('home.HomePage')
+    Main = apps.get_model('home.Main')
 
     # Delete the default homepage
     Page.objects.get(id=2).delete()
 
     # Create content type for homepage model
-    homepage_content_type, created = ContentType.objects.get_or_create(
-        model='homepage', app_label='home')
+    main_content_type, created = ContentType.objects.get_or_create(
+        model='main', app_label='home')
 
     # Create a new homepage
-    homepage = HomePage.objects.create(
-        title="Homepage",
+    main = Main.objects.create(
+        title="Main",
         slug='home',
-        content_type=homepage_content_type,
+        content_type=main_content_type,
         path='00010001',
         depth=2,
         numchild=0,
@@ -31,7 +31,7 @@ def create_homepage(apps, schema_editor):
 
     # Create a site with the new homepage set as the root
     Site.objects.create(
-        hostname='localhost', root_page=homepage, is_default_site=True)
+        hostname='localhost', root_page=main, is_default_site=True)
 
 
 class Migration(migrations.Migration):
@@ -41,5 +41,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(create_homepage),
+        migrations.RunPython(create_main),
     ]
