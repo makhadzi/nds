@@ -59,7 +59,6 @@ NewsEvent.content_panels = [
             FieldPanel('time_start'), FieldPanel('time_end')],
             classname="label-above")],
         _("Date & Time")),
-    FieldRowPanel([FieldPanel('repeat_annually')], classname="label-above"),
     FieldPanel('tags'),
     FieldPanel('location'),
     FieldPanel('body', classname="full"),
