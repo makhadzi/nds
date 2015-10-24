@@ -41,8 +41,8 @@ class Main(Page):
     parent_page_types = []
 
 
-class Section(Page):
-    subpage_types = ['home.Section', 'home.NewsEvent']
+class Category(Page):
+    subpage_types = ['home.Category', 'home.NewsEvent']
 
 
 class NewsEventTag(TaggedItemBase):
@@ -50,7 +50,7 @@ class NewsEventTag(TaggedItemBase):
 
 
 class NewsEvent(Page, TagSearchable):
-    parent_page_types = ['home.Section']
+    parent_page_types = ['home.Category']
     subpage_types = []
 
     date_start = models.DateField(_("Start date"))
