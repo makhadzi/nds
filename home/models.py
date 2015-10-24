@@ -14,6 +14,28 @@ from wagtail.wagtailadmin.taggable import TagSearchable
 from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, MultiFieldPanel, FieldRowPanel)
 
+PROVINCE_LIMPOPO = 'limpopo'
+PROVINCE_GAUTENG = 'gauteng'
+PROVINCE_MPUMALANGA = 'mpumalanga'
+PROVINCE_NORTH_WEST = 'northwest'
+PROVINCE_KWAZULU_NATAL = 'kwazulunatal'
+PROVINCE_EASTERN_CAPE = 'easterncape'
+PROVINCE_WESTERN_CAPE = 'westerncape'
+PROVINCE_NORTHERN_CAPE = 'northerncape'
+PROVINCE_FREE_STATE = 'freestate'
+
+PROVINCES = (
+    (PROVINCE_EASTERN_CAPE, 'Eastern Cape'),
+    (PROVINCE_FREE_STATE, 'Free State'),
+    (PROVINCE_GAUTENG, 'Gauteng'),
+    (PROVINCE_KWAZULU_NATAL, 'Kwazulu Natal'),
+    (PROVINCE_LIMPOPO, 'Limpopo'),
+    (PROVINCE_MPUMALANGA, 'Mpumalanga'),
+    (PROVINCE_NORTH_WEST, 'North West'),
+    (PROVINCE_NORTHERN_CAPE, 'Northern Cape'),
+    (PROVINCE_WESTERN_CAPE, 'Western Cape'),
+)
+
 
 class Main(Page):
     parent_page_types = []
@@ -48,6 +70,8 @@ class NewsEvent(Page, TagSearchable):
         index.SearchField('location'),
         index.SearchField('body'),
     )
+    province = models.CharField(
+        max_length=255, choices=PROVINCES, blank=True)
 
 NewsEvent.content_panels = [
     FieldPanel('title', classname="full title"),
@@ -61,5 +85,6 @@ NewsEvent.content_panels = [
         _("Date & Time")),
     FieldPanel('tags'),
     FieldPanel('location'),
+    FieldPanel('province'),
     FieldPanel('body', classname="full"),
 ]
