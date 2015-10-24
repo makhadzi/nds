@@ -31,21 +31,18 @@ class NewsEvent(Page, TagSearchable):
     parent_page_types = ['home.Section']
     subpage_types = []
 
-    date_start = models.DateField("Start date")
+    date_start = models.DateField(_("Start date"))
     date_end = models.DateField(
-        "End date",
+        _("End date"),
         null=True,
         blank=True,
-        help_text="Not required if event is on a single day"
+        help_text=_("Not required if event is on a single day")
     )
-    time_start = models.TimeField("Start time", null=True, blank=True)
-    time_end = models.TimeField("End time", null=True, blank=True)
+    time_start = models.TimeField(_("Start time"), null=True, blank=True)
+    time_end = models.TimeField(_("End time"), null=True, blank=True)
     location = models.CharField(max_length=255)
     body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=NewsEventTag, blank=True)
-    repeat_annually = models.BooleanField(
-        default=False,
-        help_text=_("Is this an annual event?"))
 
     search_fields = Page.search_fields + TagSearchable.search_fields + (
         index.SearchField('location'),
@@ -61,7 +58,7 @@ NewsEvent.content_panels = [
         FieldRowPanel([
             FieldPanel('time_start'), FieldPanel('time_end')],
             classname="label-above")],
-        "Date & Time"),
+        _("Date & Time")),
     FieldRowPanel([FieldPanel('repeat_annually')], classname="label-above"),
     FieldPanel('tags'),
     FieldPanel('location'),
